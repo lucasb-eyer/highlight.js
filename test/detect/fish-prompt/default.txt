@@ -1,0 +1,8 @@
+lucas@foo ><((("> echo "Do you see the $VARIABLE?" | cat
+Do you see the 123?
+><((("> cp (echo $HOME)/bar ~/baz
+> for i in (seq 1 2) ; echo $i ; end
+1
+2
+user@host ~/path><((("> cat code.txt >$HOME/foo.txt ^/dev/null <../some/thing lol $not done
+$This shouldn't be "Highlighted!" It also shouldn't be echoed :)
