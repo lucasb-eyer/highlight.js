@@ -46,6 +46,12 @@ function(hljs) {
     starts: FIRSTWORD_COMMAND,
   };
 
+  var REDIR = {
+    className: 'subst',
+    begin: /[<^>]\S+\b/,
+    contains: [VAR],
+  };
+
   var PROMPTS = [
     {begin: /^>\s+/},  /* from the official documentation. */
     {begin: /^.*><\(\(\(">\s+/},  /* WHATEVER><((("> */
@@ -89,6 +95,7 @@ function(hljs) {
             SUBST_OPEN,
             SUBST_CLOSE,
             SEP,
+            REDIR,
           ]
         },
         relevance: 20,
