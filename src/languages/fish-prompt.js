@@ -48,8 +48,7 @@ function(hljs) {
 
   var PROMPTS = [
     {begin: /^>\s+/},  /* from the official documentation. */
-    {begin: /^\w[\w\d_]{0,31}@[\w\d-]{1,255} .+>\s+/},  /* default: user@host path> */
-    {begin: /^(\w+@\w+\s*)?><\(\(\(">\s+/},  /* fish-themed: ><((("> and user@host ><((("> */
+    {begin: /^.*><\(\(\(">\s+/},  /* WHATEVER><((("> */
   ];
 
   return {
