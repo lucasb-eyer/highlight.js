@@ -42,7 +42,7 @@ function(hljs) {
   };
   var SEP = {
     className: 'subst',
-    begin: /;/,
+    begin: /[;|]/,
     starts: FIRSTWORD_COMMAND,
   };
 
