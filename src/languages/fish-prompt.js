@@ -5,7 +5,7 @@ Category: common
 */
 
 function(hljs) {
-  var FIRSTWORD_COMMAND = {className: 'keyword', end: /\s*\S+\s+/};
+  var FIRSTWORD_COMMAND = {className: 'keyword', end: /\s*\S+/};
 
   var VAR = {
     className: 'variable',
