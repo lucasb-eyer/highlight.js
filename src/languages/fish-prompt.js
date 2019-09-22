@@ -7,6 +7,11 @@ Category: common
 function(hljs) {
   var FIRSTWORD_COMMAND = {className: 'keyword', end: /\s*\S+/};
 
+  var NEWLINE = {
+      begin: /\n/,
+      starts: FIRSTWORD_COMMAND,
+  };
+
   var VAR = {
     className: 'variable',
     variants: [
@@ -61,19 +66,21 @@ function(hljs) {
     lexemes: /-?[a-z_\.]+/,
     keywords: {
       keyword:
-        'if then else elif fi for break continue while in do done exit return set '+
-        'declare case esac export exec function',
+        'and begin break case continue else end for function if in not or '+
+        'return set switch test while',
       literal:
         'true false',
       built_in:
-        'alias and begin bg bind block break breakpoint builtin case cd command'+
-        'commandline complete contains continue count dirh dirs echo else emit'+
-        'end eval exec exit fg fish fish_config fish_indent fish_pager'+
-        'fish_prompt fish_right_prompt fish_update_completions fishd for'+
-        'funced funcsave function functions help history if isatty jobs math'+
-        'mimedb nextd not open or popd prevd psub pushd pwd random read return'+
-        'set set_color source status switch test trap type ulimit umask vared'+
-        'while',
+        'abbr alias argparse bg bind block breakpoint builtin '+
+        'cd cdh command commandline complete contains count dirh '+
+        'dirs disown echo emit eval exec exit fg fish '+
+        'fish_breakpoint_prompt fish_config fish_indent fish_key_reader '+
+        'fish_mode_prompt fish_opt fish_prompt fish_right_prompt '+
+        'fish_update_completions fish_vi_mode funced funcsave '+
+        'functions help history isatty jobs math nextd open popd '+
+        'prevd printf prompt_pwd psub pushd pwd random read realpath '+
+        'set_color source status string suspend trap '+
+        'type ulimit umask vared wait',
       special:
         'BROWSER CDPATH PATH umask _ argv history HOME PWD status USER'+
         'LANG LC_ALL LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC LC_TIME'+
@@ -84,9 +91,10 @@ function(hljs) {
         variants: PROMPTS,
         returnBegin: true,
         starts: {
-          end: '$',
+          end: '\0',  // Continue across newlines (not sure if that's the right way!)
           contains: [
             {className: 'title', variants: PROMPTS, starts: FIRSTWORD_COMMAND},
+            NEWLINE,
             hljs.HASH_COMMENT_MODE,
             hljs.NUMBER_MODE,
             VAR,
